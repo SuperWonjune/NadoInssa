@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Word {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -23,12 +23,13 @@ public class Word {
         this.setTitle(title);
         this.setContent(content);
     }
-
+/*
     public Word(int id, String title, String content) {
         this.setId(id);
         this.setTitle(title);
         this.setContent(content);
     }
+    */
 
     public int getId() {
         return id;

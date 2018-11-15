@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api")
 public class WordController {
 
     @Autowired
     WordRepository wordRepository;
 
-    @GetMapping("/word")
+    @GetMapping("/words")
     public List<Word> index(){
         return wordRepository.findAll();
     }
@@ -49,7 +50,7 @@ public class WordController {
     @DeleteMapping("word/{id}")
     public boolean delete(@PathVariable String id){
         int wordId = Integer.parseInt(id);
-        wordRepository.delete(wordId);
+        wordRepository.deleteById(wordId);
         return true;
     }
 
