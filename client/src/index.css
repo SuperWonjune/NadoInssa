@@ -1,8 +1,8 @@
-- src/index.css
 
 body {
   margin: 0;
   box-sizing: border-box;
+  margin-top: 100px;
 }
 
 * {
