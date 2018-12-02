@@ -18,23 +18,35 @@ public class WordController {
     public List<Word> index(){
         return wordRepository.findAll();
     }
-
+/*
     @GetMapping("/word/{id}")
     public Word show(@PathVariable String id){
         int wordId = Integer.parseInt(id);
         return wordRepository.findOne(wordId);
     }
+*/
+    @GetMapping("/word/{wordTitle}")
+    public Word search(@PathVariable String wordTitle){
+        String searchWord = wordTitle;
+        return wordRepository.findOneByTitle(searchWord);
+    }
 
     @PostMapping("/word/search")
-    public List<Word> search(@RequestBody Map<String, String> body){
-        String searchTerm = body.get("text");
-        return wordRepository.findByTitleContainingOrContentContaining(searchTerm, searchTerm);
+    public Word search(@RequestBody Map<String, String> body){
+        String searchTerm = body.get("word");
+        return wordRepository.findOneByTitle(searchTerm);
     }
 
     @PostMapping("/word")
     public Word create(@RequestBody Map<String, String> body){
         String title = body.get("title");
         String content = body.get("content");
+
+        // check if word exists
+        Word word = wordRepository.findOneByTitle(title);
+        if (word != null) {
+            return null;
+        }
         return wordRepository.save(new Word(title, content));
     }
 

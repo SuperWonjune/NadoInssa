@@ -11,7 +11,7 @@ class Word extends Component {
 
   async componentDidMount() {
     const { match: { params } } = this.props;
-    const word = (await axios.get(`http://localhost:8080/api/word/${params.wordId}`)).data;
+    const word = (await axios.get(`http://localhost:8080/api/word/${params.wordTitle}`)).data;
     this.setState({
       word,
     });
