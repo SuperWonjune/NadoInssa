@@ -15,4 +15,7 @@ public interface WordRepository extends JpaRepository<Word, Integer> {
     // custom query to search the word by title or content
     List<Word> findByTitleContainingOrContentContaining(String text, String textAgain);
 
+    // custom query fo search the word by title
+    Word findOneByTitle(String text);
+
 }

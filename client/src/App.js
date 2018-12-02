@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <NavBar/>
         <Route exact path='/' component={Words}/>
-        <Route exact path='/word/:wordId' component={Word}/>
+        <Route exact path='/:wordTitle' component={Word}/>
         <Route path='/new-word' component={NewWord} />
       </div>
     );

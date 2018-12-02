@@ -33,7 +33,7 @@ class Words extends Component {
           {
             this.state.words && this.state.words.map(word => (
               <div key={word.id} className="col-sm-12 col-md-4 col-lg-3">
-                <Link to={`/word/${word.id}`}>
+                <Link to={`/${word.title}`}>
                   <div className="card text-white bg-success mb-3">
                     <div className="card-body">
                       <h4 className="card-title">{word.title}</h4>
