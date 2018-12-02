@@ -10,9 +10,9 @@ class App extends Component {
     return (
       <div>
         <NavBar/>
+        <Route exact path='/create/new-word' component={NewWord}/>
         <Route exact path='/' component={Words}/>
         <Route exact path='/:wordTitle' component={Word}/>
-        <Route path='/new-word' component={NewWord} />
       </div>
     );
   }
