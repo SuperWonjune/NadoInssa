@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import '../index.css';
 
 class Words extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Words extends Component {
                   <div className="card text-white bg-success mb-3">
                     <div className="card-body">
                       <h4 className="card-title">{word.title}</h4>
-                      <p className="card-text">{word.content}</p>
+                      <p className="card-text btn-wrap-text">{word.content}</p>
                     </div>
                   </div>
                 </Link>

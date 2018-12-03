@@ -22,3 +22,10 @@ a {
 #p_wrap {
   white-space: pre-line;
 }
+
+.btn-wrap-text {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
