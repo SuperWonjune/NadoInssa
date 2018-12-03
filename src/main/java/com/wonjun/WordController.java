@@ -25,10 +25,18 @@ public class WordController {
         return wordRepository.findOne(wordId);
     }
 */
+
     @GetMapping("/word/{wordTitle}")
     public Word search(@PathVariable String wordTitle){
         String searchWord = wordTitle;
         return wordRepository.findOneByTitle(searchWord);
+    }
+
+    @GetMapping("/word/searchdata/{wordTitle}")
+    public SearchResult getSearchResult(@PathVariable String wordTitle) {
+        NaverSearchAPI searchAPI = new NaverSearchAPI();
+        searchAPI.request(wordTitle);
+        return searchAPI.getResultJsonObject();
     }
 
     @PostMapping("/word/search")
