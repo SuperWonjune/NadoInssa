@@ -14,3 +14,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.btn-space {
+  margin-right: 20px;
+}
+
+#p_wrap {
+  white-space: pre-line;
+}

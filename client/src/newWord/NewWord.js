@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
+import '../index.css';
+import {Link} from 'react-router-dom';
 
 class NewWord extends Component {
   constructor(props) {
@@ -67,10 +69,17 @@ class NewWord extends Component {
                 </div>
                 <button
                   disabled={this.state.disabled}
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-space"
                   onClick={() => {this.submit()}}>
-                  Submit
+                  입력
                 </button>
+                <Link to="/">
+                  <button
+                    className="btn btn-primary btn-space">
+                    취소
+                  </button>
+                </Link>
+                
               </div>
             </div>
           </div>

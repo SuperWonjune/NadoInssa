@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+import '../index.css';
+
 
 class Word extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class Word extends Component {
     this.setState({
       word,
     });
+
   }
 
   render() {
@@ -25,9 +29,23 @@ class Word extends Component {
         <div className="row">
           <div className="jumbotron col-12">
             <h1 className="display-3">{word.title}</h1>
-            <p className="lead">{word.content}</p>
+            <br/>
+            <br/>
+            <p id="p_wrap" className="lead">{word.content}</p>
           </div>
         </div>
+        
+        <div class="text-right" >
+        <button
+            className="btn btn-primary btn-space">
+            수정
+          </button>
+          <button
+            className="btn btn-primary btn-space">
+            삭제
+          </button>
+        </div>
+        
       </div>
     )
   }

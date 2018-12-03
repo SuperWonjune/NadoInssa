@@ -23,12 +23,12 @@ class Words extends Component {
       
       <div className="container">
       <Link to="/create/new-word">
-            <div className="card text-white bg-secondary mb-3">
-              <div className="card-body">
-                <h4 className="card-title">새로운 단어를 만들어보세요!</h4>
-              </div>
-            </div>
-          </Link>
+        <div className="card text-white bg-secondary mb-3">
+          <div className="card-body">
+            <h4 className="card-title">새로운 단어를 만들어보세요!</h4>
+          </div>
+        </div>
+      </Link>
         <div className="row">
           {this.state.words === null && <p></p>}
           {
