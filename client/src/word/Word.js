@@ -10,6 +10,7 @@ class Word extends Component {
     super(props);
     this.state = {
       word: null,
+      modUrl: null,
     };
   }
 
@@ -18,6 +19,7 @@ class Word extends Component {
     const word = (await axios.get(`http://localhost:8080/api/word/${params.wordTitle}`)).data;
     this.setState({
       word,
+      modUrl: '/modify/' + word.title
     });
   }
 
@@ -41,10 +43,13 @@ class Word extends Component {
         </div>
         
         <div class="text-right" >
-        <button
-            className="btn btn-primary btn-space">
-            수정
-          </button>
+        <Link to= {this.state.modUrl}>
+          <button
+              className="btn btn-primary btn-space">
+              수정
+            </button>
+        </Link>
+        
           <button
             className="btn btn-primary btn-space"
             onClick={() => {this.delete_word()}}>

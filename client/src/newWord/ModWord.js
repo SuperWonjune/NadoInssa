@@ -4,16 +4,30 @@ import axios from 'axios';
 import '../index.css';
 import {Link} from 'react-router-dom';
 
-class NewWord extends Component {
-  constructor(props) {
-    super(props);
+class ModWord extends Component {
 
-    this.state = {
-      disabled: false,
-      title: '',
-      content: '',
-    };
-  }
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          word: '',
+          disabled: false,
+          title: '',
+          content: '',
+        };
+      }
+    
+      async componentDidMount() {
+        const { match: { params } } = this.props;
+        const word = (await axios.get(`http://localhost:8080/api/word/${params.wordTitle}`)).data;
+        this.setState({
+          word,
+          title: word.title,
+          content: word.content
+        });
+        this.updateContent(this.content)
+      }
+  
 
   updateContent(value) {
     this.setState({
@@ -27,27 +41,16 @@ class NewWord extends Component {
     });
   }
 
-  async submit() {
-
-    if (this.state.title === '') {
-      alert("단어 이름이 비었습니다.");
-      return;
-    }
-
-    if (this.state.content === '') {
-      alert("설명이 비었습니다.");
-      return;
-    }
+  async update_word() {
 
     this.setState({
-      disabled: true,
-    });
+        disabled: true,
+      });
 
-    await axios.post('http://localhost:8080/api/word', {
-      title: this.state.title,
-      content: this.state.content,
+    await axios.put('http://localhost:8080/api/word/' + this.state.word.id, {
+        title: this.state.title,
+        content: this.state.content,
     });
-
     this.props.history.push('/');
   }
 
@@ -60,13 +63,7 @@ class NewWord extends Component {
               <div className="card-body text-left">
                 <div className="form-group">
                   { /* <label htmlFor="exampleInputEmail1">Title:</label> */}
-                  <input
-                    disabled={this.state.disabled}
-                    type="text"
-                    onBlur={(e) => {this.updateTitle(e.target.value)}}
-                    className="form-control"
-                    placeholder="단어를 입력하세요"
-                  />
+                  <h1 className="display-3">{this.state.word.title}</h1>
                 </div>
                 <div className="form-group">
                   <textarea
@@ -76,13 +73,14 @@ class NewWord extends Component {
                     className="form-control"
                     rows="20"
                     placeholder="설명을 입력하세요"
+                    value = {this.state.content}
                   />
                 </div>
                 <button
                   disabled={this.state.disabled}
                   className="btn btn-primary btn-space"
-                  onClick={() => {this.submit()}}>
-                  입력
+                  onClick={() => {this.update_word()}}>
+                  수정
                 </button>
                 <Link to="/">
                   <button
@@ -90,7 +88,6 @@ class NewWord extends Component {
                     취소
                   </button>
                 </Link>
-                
               </div>
             </div>
           </div>
@@ -100,4 +97,4 @@ class NewWord extends Component {
   }
 }
 
-export default withRouter(NewWord);
+export default withRouter(ModWord);

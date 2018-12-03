@@ -39,7 +39,6 @@ class Words extends Component {
                   <div className="card text-white bg-success mb-3">
                     <div className="card-body">
                       <h4 className="card-title">{word.title}</h4>
-                      <p className="card-text btn-wrap-text">{word.content}</p>
                     </div>
                   </div>
                 </Link>
