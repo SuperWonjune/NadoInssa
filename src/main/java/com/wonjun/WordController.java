@@ -60,7 +60,7 @@ public class WordController {
         return wordRepository.save(word);
     }
 
-    @DeleteMapping("word/{id}")
+    @DeleteMapping("/word/{id}")
     public boolean delete(@PathVariable String id){
         int wordId = Integer.parseInt(id);
         wordRepository.deleteById(wordId);

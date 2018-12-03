@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import '../index.css';
+import {withRouter} from 'react-router-dom';
 
 
 class Word extends Component {
@@ -18,7 +19,11 @@ class Word extends Component {
     this.setState({
       word,
     });
+  }
 
+  async delete_word() {
+    await axios.delete('http://localhost:8080/api/word/' + this.state.word.id);
+    this.props.history.push('/');
   }
 
   render() {
@@ -41,7 +46,8 @@ class Word extends Component {
             수정
           </button>
           <button
-            className="btn btn-primary btn-space">
+            className="btn btn-primary btn-space"
+            onClick={() => {this.delete_word()}}>
             삭제
           </button>
         </div>
