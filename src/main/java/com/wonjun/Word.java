@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
 
 @Entity
 public class Word {
@@ -12,6 +13,8 @@ public class Word {
     private int id;
 
     private String title;
+
+    @Column(columnDefinition="LONGTEXT")
     private String content;
 
     public Word() {
