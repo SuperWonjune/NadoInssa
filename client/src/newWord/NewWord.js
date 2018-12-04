@@ -43,7 +43,7 @@ class NewWord extends Component {
       disabled: true,
     });
 
-    await axios.post('http://localhost:8080/api/word', {
+    await axios.post('http://www.inssawiki.ml:8080/api/word', {
       title: this.state.title,
       content: this.state.content,
     });

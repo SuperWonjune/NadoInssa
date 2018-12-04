@@ -19,7 +19,7 @@ class ModWord extends Component {
     
       async componentDidMount() {
         const { match: { params } } = this.props;
-        const word = (await axios.get(`http://localhost:8080/api/word/${params.wordTitle}`)).data;
+        const word = (await axios.get(`http://www.inssawiki.ml:8080/api/word/${params.wordTitle}`)).data;
         this.setState({
           word,
           title: word.title,
@@ -47,7 +47,7 @@ class ModWord extends Component {
         disabled: true,
       });
 
-    await axios.put('http://localhost:8080/api/word/' + this.state.word.id, {
+    await axios.put('http://www.inssawiki.ml:8080/api/word/' + this.state.word.id, {
         title: this.state.title,
         content: this.state.content,
     });

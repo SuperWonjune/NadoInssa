@@ -21,14 +21,14 @@ class Word extends Component {
 
   async componentDidMount() {
     const { match: { params } } = this.props;
-    const word = (await axios.get(`http://localhost:8080/api/word/${params.wordTitle}`)).data;
+    const word = (await axios.get(`http://www.inssawiki.ml:8080/api/word/${params.wordTitle}`)).data;
     this.setState({
       word,
       modUrl: '/modify/' + word.title
     });
 
     // 네이버 검색 API 갖고오기
-    const wordSearchData = (await axios.get(`http://localhost:8080/api/word/searchdata/${params.wordTitle}`)).data;
+    const wordSearchData = (await axios.get(`http://www.inssawiki.ml:8080/api/word/searchdata/${params.wordTitle}`)).data;
     this.setState({
       wordSearchData,
       startDate: wordSearchData.startDate,
@@ -37,13 +37,35 @@ class Word extends Component {
   }
 
   async delete_word() {
-    await axios.delete('http://localhost:8080/api/word/' + this.state.word.id);
+    await axios.delete('http://www.inssawiki.ml:8080/api/word/' + this.state.word.id);
     this.props.history.push('/');
   }
 
   render() {
     const {word} = this.state;
-    if (word === null) return <p></p>;
+    if (word === null) return <p></p>
+
+    else if (word === '') 
+    return <div className="container">
+    <div className="row">
+      <div className="jumbotron col-12">
+        <h1 className="display-3">요청하신 단어가 '아직' 없습니다.</h1>
+        <br/>
+        <br/>
+        <Link to= "/create/new-word">
+          <button
+              className="btn btn-primary btn-space">
+              내가 만들거야!
+            </button>
+        </Link>
+      </div>
+    </div>
+    
+    <div class="text-right" >
+    </div>
+    </div>
+    
+    else {
     return (
       <div className="container">
         <div className="row">
@@ -76,6 +98,7 @@ class Word extends Component {
         
       </div>
     )
+    }
   }
 }
 

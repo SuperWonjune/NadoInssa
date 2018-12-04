@@ -13,7 +13,7 @@ class Words extends Component {
   }
 
   async componentDidMount() {
-    const words = (await axios.get('http://localhost:8080/api/words')).data;
+    const words = (await axios.get('http://www.inssawiki.ml:8080/api/words')).data;
     this.setState({
       words,
     });
