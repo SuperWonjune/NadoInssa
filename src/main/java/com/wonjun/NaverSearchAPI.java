@@ -38,6 +38,10 @@ public class NaverSearchAPI {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Access-Control-Allow-Origin", "*");
+            con.setRequestProperty("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+            con.setRequestProperty("Access-Control-Max-Age", "3600");
+            con.setRequestProperty("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
 
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
