@@ -45,13 +45,13 @@ class Word extends Component {
        wordSearchData.results[0].data[2].period, wordSearchData.results[0].data[3].period, wordSearchData.results[0].data[4].period,
        wordSearchData.results[0].data[5].period, wordSearchData.results[0].data[6].period, wordSearchData.results[0].data[7].period,
        wordSearchData.results[0].data[8].period, wordSearchData.results[0].data[9].period, wordSearchData.results[0].data[10].period,
-       wordSearchData.endDate],
+       wordSearchData.results[0].data[11].period, wordSearchData.endDate],
        ["\'"+ wordSearchData.results[0].title+"\' 검색 빈도", wordSearchData.results[0].data[0].ratio, wordSearchData.results[0].data[1].ratio,
         wordSearchData.results[0].data[2].ratio, wordSearchData.results[0].data[3].ratio,
         wordSearchData.results[0].data[4].ratio, wordSearchData.results[0].data[5].ratio,
         wordSearchData.results[0].data[6].ratio, wordSearchData.results[0].data[7].ratio,
         wordSearchData.results[0].data[8].ratio, wordSearchData.results[0].data[9].ratio,
-        wordSearchData.results[0].data[10].ratio, wordSearchData.results[0].data[11].ratio]
+        wordSearchData.results[0].data[10].ratio, wordSearchData.results[0].data[11].ratio, wordSearchData.results[0].data[12].ratio]
      ],
      type: "bar"
    },
@@ -59,7 +59,7 @@ class Word extends Component {
       x: {
           type: "timeseries",
           tick: {
-              count: 12,
+              count: 13,
               format: "%Y-%m"
           }
       },
@@ -67,7 +67,11 @@ class Word extends Component {
         label: {
             text: "단위: %(퍼센트)",
             position: "outer-middle",
-        }
+        },
+        padding: {
+          top: 5,
+          bottom: 0
+      }
     }
     },
     bindto: "#chart"
