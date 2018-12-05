@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom';
 import '../index.css';
 import {withRouter} from 'react-router-dom';
 import Words from '../words/Words';
+import {bb} from "billboard.js";
 
 
 class Word extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +18,7 @@ class Word extends Component {
       startDate: null,
       endDate: null,
       results: null,
+      chart: null
     };
   }
 
@@ -32,9 +35,45 @@ class Word extends Component {
     this.setState({
       wordSearchData,
       startDate: wordSearchData.startDate,
-      endDate: wordSearchData.endDate,
-    })
-  }
+      endDate: wordSearchData.endDate
+  })
+  const chart = bb.generate({
+    data: {
+      x: "x",
+      columns: [
+       ["x", wordSearchData.startDate, wordSearchData.results[0].data[1].period,
+       wordSearchData.results[0].data[2].period, wordSearchData.results[0].data[3].period, wordSearchData.results[0].data[4].period,
+       wordSearchData.results[0].data[5].period, wordSearchData.results[0].data[6].period, wordSearchData.results[0].data[7].period,
+       wordSearchData.results[0].data[8].period, wordSearchData.results[0].data[9].period, wordSearchData.results[0].data[10].period,
+       wordSearchData.endDate],
+       ["\'"+ wordSearchData.results[0].title+"\' 검색 빈도", wordSearchData.results[0].data[0].ratio, wordSearchData.results[0].data[1].ratio,
+        wordSearchData.results[0].data[2].ratio, wordSearchData.results[0].data[3].ratio,
+        wordSearchData.results[0].data[4].ratio, wordSearchData.results[0].data[5].ratio,
+        wordSearchData.results[0].data[6].ratio, wordSearchData.results[0].data[7].ratio,
+        wordSearchData.results[0].data[8].ratio, wordSearchData.results[0].data[9].ratio,
+        wordSearchData.results[0].data[10].ratio, wordSearchData.results[0].data[11].ratio]
+     ],
+     type: "bar"
+   },
+   axis: {
+      x: {
+          type: "timeseries",
+          tick: {
+              count: 12,
+              format: "%Y-%m"
+          }
+      },
+      y: {
+        label: {
+            text: "단위: %(퍼센트)",
+            position: "outer-middle",
+        }
+    }
+    },
+    bindto: "#chart"
+})
+console.log(wordSearchData.results[0].data[0].ratio);
+}
 
   async delete_word() {
     await axios.delete('http://www.inssawiki.ml:8080/api/word/' + this.state.word.id);
@@ -76,7 +115,7 @@ class Word extends Component {
             <p id="p_wrap" className="lead">{word.content}</p>
           </div>
         </div>
-        
+        <div id="chart"> </div>
         <div class="text-right" >
         <Link to= {this.state.modUrl}>
           <button
@@ -91,10 +130,8 @@ class Word extends Component {
             삭제
           </button>
         </div>
-
-        <p>{this.state.startDate}</p>
-        <p>{this.state.endDate}</p>
-        <p>{this.state.results}</p>
+        
+       
         
       </div>
     )
