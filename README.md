@@ -1,5 +1,5 @@
 # NadoInssa
-A Wiki-based Websites consists of current trending Korean words
+A Wiki-based Websites which contains current trending Korean words
 
 
 Used Open Source

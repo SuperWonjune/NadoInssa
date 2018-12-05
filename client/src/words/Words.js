@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import '../index.css';
 
 class Words extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Words extends Component {
   }
 
   async componentDidMount() {
-    const words = (await axios.get('http://localhost:8080/api/words')).data;
+    const words = (await axios.get('http://www.inssawiki.ml:8080/api/words')).data;
     this.setState({
       words,
     });
@@ -20,24 +21,24 @@ class Words extends Component {
 
   render() {
     return (
+      
       <div className="container">
+      <Link to="/create/new-word">
+        <div className="card text-white bg-secondary mb-3">
+          <div className="card-body">
+            <h4 className="card-title">새로운 단어를 만들어보세요!</h4>
+          </div>
+        </div>
+      </Link>
         <div className="row">
-        <Link to="/new-word">
-            <div className="card text-white bg-secondary mb-3">
-              <div className="card-body">
-                <h4 className="card-title">+ 단어 추가</h4>
-              </div>
-            </div>
-          </Link>
           {this.state.words === null && <p></p>}
           {
             this.state.words && this.state.words.map(word => (
               <div key={word.id} className="col-sm-12 col-md-4 col-lg-3">
-                <Link to={`/word/${word.id}`}>
+                <Link to={`/${word.title}`}>
                   <div className="card text-white bg-success mb-3">
                     <div className="card-body">
                       <h4 className="card-title">{word.title}</h4>
-                      <p className="card-text">{word.content}</p>
                     </div>
                   </div>
                 </Link>
