@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://www.inssawiki.ml/",
   "dependencies": {
-    "@material-ui/core": "^3.5.1",
+    "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
     "react": "^16.6.3",

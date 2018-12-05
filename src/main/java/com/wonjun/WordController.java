@@ -18,13 +18,6 @@ public class WordController {
     public List<Word> index(){
         return wordRepository.findAll();
     }
-/*
-    @GetMapping("/word/{id}")
-    public Word show(@PathVariable String id){
-        int wordId = Integer.parseInt(id);
-        return wordRepository.findOne(wordId);
-    }
-*/
 
     @GetMapping("/word/{wordTitle}")
     public Word search(@PathVariable String wordTitle){
